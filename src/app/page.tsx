@@ -1,96 +1,41 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import {useState} from 'react'
+import {Textarea} from '@/components/ui/textarea'
+import {Button} from '@/components/ui/button'
+import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription} from '@/components/ui/dialog'
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1 className="text-3xl text-red-500 font-bold">KONTOL</h1>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [myCode, setMyCode] = useState('')
+  const [popup, showPopup] = useState(false)
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  return (
+    <main className='flex flex-col items-center justify-center p-8 max-w-3xl mx-auto gap-4'>
+      <h1 className='text-3xl font-bold'>Re-Vue</h1>
+
+      <Textarea
+        placeholder='Paste your code...'
+        className='min-h-[200px]'
+        value={myCode}
+        onChange={(e) =>  setMyCode(e.target.value)}
+      />
+
+      <Button
+        onClick={() => console.log('Code to review: ', myCode)}
+        disabled={!myCode.trim()}
+      >
+        Review Code
+      </Button>
+
+      <Dialog open={popup} onOpenChange={showPopup}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Submitted Code</DialogTitle>
+            <DialogDescription>Here&aposs the code submitted - an AI will be ready to review it next.</DialogDescription>
+          </DialogHeader>
+          <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto text-sm">{myCode}</pre>
+        </DialogContent>
+      </Dialog>
+    </main>
+  )
 }
