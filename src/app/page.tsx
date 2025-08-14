@@ -18,7 +18,7 @@ export default function Home() {
           'What the fuck is this? YOU SUCK'
         )
         showLoading(false)
-      }, 50000)
+      }, 5000)
       return () => clearTimeout(timer);
     }
   }, [loading])
@@ -47,7 +47,7 @@ export default function Home() {
       </Button>
 
       <Dialog open={popup} onOpenChange={showPopup}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className='max-w-2xl'>
           <DialogHeader>
             <DialogTitle>Submitted Code</DialogTitle>
             <DialogDescription>Here&apos;s the code submitted - an AI will be ready to review it next.</DialogDescription>
@@ -58,20 +58,21 @@ export default function Home() {
               <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900'></div>
               <p className='text-gray-500'>Analyzing your code...</p>
             </div>
+
           ) : (
             
-            <>
+            <div className='flex flex-col sm:flex-row gap-6 sm:gap-8'>
 
-          <div>
-            <h2 className="font-semibold mb-2">Your Code</h2>
-            <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto text-sm">{myCode}</pre>
-          </div>
+            <div className='flex-1'>
+              <h2 className='font-semibold mb-2'>Your Code</h2>
+              <pre className='bg-gray-100 p-4 rounded-md overflow-x-auto text-sm'>{myCode}</pre>
+            </div>
 
-          <div>
-            <h2 className="font-semibold mb-2">AI Feedback</h2>
-            <pre className="bg-green-50 p-4 rounded-md overflow-x-auto text=sm">{reviewResult}</pre>
+            <div>
+              <h2 className='font-semibold mb-2'>AI Feedback</h2>
+              <pre className='bg-green-50 p-4 rounded-md    overflow-x-auto text=sm'>{reviewResult}</pre>
+            </div>
           </div>
-          </>
           )}
         </DialogContent>
       </Dialog>
