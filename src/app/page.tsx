@@ -32,11 +32,6 @@ export default function Home() {
 
   return (
     <main className='flex flex-col items-center justify-center p-8 max-w-3xl mx-auto gap-4'>
-      <h1 className='text-3xl font-bold'>Re-Vue</h1>
-
-      <div className='w-full flex justify-end'>
-        <ThemeToggle />
-      </div>
 
       <Textarea
         placeholder='Paste your code...'
