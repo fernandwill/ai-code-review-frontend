@@ -21,8 +21,7 @@ export default function Home() {
       />
 
       <Button
-        onClick={() => console.log('Code to review: ', myCode)}
-        disabled={!myCode.trim()}
+        onClick={() => showPopup(true)} disabled={!myCode.trim()}
       >
         Review Code
       </Button>
@@ -31,7 +30,7 @@ export default function Home() {
         <DialogContent className="max-w-2xl">
           <DialogHeader>
             <DialogTitle>Submitted Code</DialogTitle>
-            <DialogDescription>Here&aposs the code submitted - an AI will be ready to review it next.</DialogDescription>
+            <DialogDescription>Here&apos;s the code submitted - an AI will be ready to review it next.</DialogDescription>
           </DialogHeader>
           <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto text-sm">{myCode}</pre>
         </DialogContent>
