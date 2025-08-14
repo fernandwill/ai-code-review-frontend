@@ -1,0 +1,6 @@
+CREATE TABLE codeReviews (
+    id SERIAL PRIMARY KEY,
+    code TEXT NOT NULL,
+    review TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
